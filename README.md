@@ -36,13 +36,12 @@ For the 3D element and other JavaScript functionality, ensure you have an active
 ## Project Structure
 
 ```
-guild-automation-website/
+Guild-Automation-Website/
 ├── assets/
 │   ├── logo_guildAutomation.svg
 │   ├── sample_img.jpg
 │   └── James_Eichele.jpg
 │   └── Marc_Friesen.jpg
-|
 ├── css/
 │   └── style.css
 ├── js/
