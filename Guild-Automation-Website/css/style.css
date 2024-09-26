@@ -1,0 +1,910 @@
+/* Table of Contents
+1. Variables
+2. Base Styles
+3. Layout
+4. Typography
+5. Header and Navigation
+6. Button Styles
+7. Section Styles
+8. Hero Section
+9. About Section
+10. Services Section
+11. Team Section
+12. Contact Section
+13. Footer Styles
+14. Scroll to Top Button
+15. Animations
+16. Form Validation Styles
+17. Notification Styles
+18. Typing Effect Styles
+19. Media Queries
+*/
+
+/* 1. Variables */
+:root {
+  --primary-color: #ff3333;
+  --secondary-color: #000000d4;
+  --accent-color: #d70606c6;
+  --text-color: #333;
+  --bg-color: #f4f4f4;
+  --white: #fff;
+  --transition: 0.3s ease;
+}
+
+/* 2. Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* 3. Layout */
+.container {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  width: 100%;
+}
+
+/* 4. Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5em;
+}
+
+/* 5. Header and Navigation */
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color var(--transition);
+  background-color: transparent;
+}
+
+header.scrolled {
+  background-color: var(--secondary-color);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9375rem 1.25rem;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 0.9375rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 0;
+  position: relative;
+}
+
+nav ul li a i {
+  margin-right: 0.3125rem;
+}
+
+nav ul li a::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0.125rem;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--primary-color);
+  transition: all var(--transition);
+  transform: translateX(-50%);
+}
+
+nav ul li a:hover {
+  color: var(--white);
+}
+
+nav ul li a:hover::before {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 1.5625rem;
+  height: 0.1875rem;
+  background-color: var(--white);
+  margin: 0.125rem 0;
+  transition: var(--transition);
+}
+
+/* 6. Button Styles */
+.contact-button,
+.cta-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.8125rem;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  min-width: 10rem;
+  cursor: pointer;
+}
+
+.contact-button i,
+.cta-button i {
+  margin-right: 0.3125rem;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-button:hover,
+.cta-button:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-button:hover i,
+.cta-button:hover i {
+  animation: icon-animation 0.6s ease-in-out infinite alternate;
+}
+
+.contact-button::after,
+.cta-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.contact-button:hover::after,
+.cta-button:hover::after {
+  opacity: 1;
+}
+
+/* 7. Section Styles */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
+section:not(:last-of-type)::after {
+  content: "";
+  display: block;
+  width: 100%;
+  max-width: 60rem;
+  height: 0.125rem;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 8. Hero Section */
+#home {
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.8),
+    rgba(0, 0, 0, 0.9)
+  );
+  color: var(--white);
+}
+
+.hero .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-content {
+  flex: 1;
+  padding-right: 3.125rem;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1.875rem;
+  line-height: 1.2;
+}
+
+.hero h2 .static-text,
+.hero h2 .typing-container {
+  display: block;
+  font-weight: 200;
+}
+
+.hero h2 .typing-container {
+  height: 3.75rem;
+  position: relative;
+}
+
+.hero h2 .typing-text {
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 1.875rem;
+  max-width: 37.5rem;
+}
+
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+}
+
+/* 9. About Section */
+#about {
+  background-color: var(--white);
+}
+
+#about h3 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--primary-color);
+}
+
+#about p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.about-cards {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.about-card {
+  flex: 1;
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.about-card:hover {
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.1);
+}
+
+.about-card h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.about-card p {
+  line-height: 1.6;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3.125rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item i {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.625rem;
+}
+
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: bold;
+  display: block;
+  color: var(--primary-color);
+}
+
+/* 10. Services Section */
+#services {
+  background-color: var(--bg-color);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+  gap: 1.875rem;
+}
+
+.service-item {
+  background-color: var(--white);
+  padding: 1.875rem;
+  border-radius: 0.625rem;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.2);
+}
+
+.service-item:hover {
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+}
+
+.service-item i {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+/* 11. Team Section */
+#team {
+  background-color: var(--white);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+  gap: 1.875rem;
+}
+
+.team-member {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  background-color: var(--bg-color);
+  cursor: pointer;
+  padding: 1.875rem;
+  transition: transform var(--transition);
+  box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.2);
+  min-height: 400px;
+}
+
+.team-member:hover {
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.1);
+}
+
+.team-content {
+  padding: 1.875rem;
+  text-align: center;
+  transition: filter var(--transition);
+}
+
+.team-content img {
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 50%;
+  margin-bottom: 0.9375rem;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.team-content h3 {
+  margin-bottom: 0.5rem;
+}
+
+.team-content p {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.team-member:hover .team-content img {
+  transform: scale(1.1);
+}
+
+.team-member.active .team-content {
+  filter: blur(2px);
+}
+
+.member-info {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  padding: 1.5rem;
+  text-align: center;
+  transition: bottom var(--transition), opacity var(--transition);
+  opacity: 0;
+  z-index: 1;
+}
+
+.team-member.active .member-info {
+  bottom: 0;
+  opacity: 1;
+}
+
+.member-info p {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.member-info .social-links a {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  margin: 0 0.5rem;
+  transition: color var(--transition);
+}
+
+.member-info .social-links a:hover {
+  color: var(--accent-color);
+}
+
+/* 12. Contact Section */
+.contact-section {
+  background: url("/assets/contact-bg.jpg") center/cover no-repeat;
+  padding: 5rem 0;
+  color: var(--white);
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.contact-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.contact-info h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.contact-info p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info i {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.social-media {
+  margin-top: 1.5rem;
+}
+
+.social-media a {
+  color: var(--white);
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  transition: color var(--transition);
+}
+
+.social-media a:hover {
+  color: var(--primary-color);
+}
+
+#contact-form {
+  flex: 1;
+  min-width: 280px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--white);
+  color: var(--white);
+  font-size: 1rem;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--primary-color);
+}
+
+#contact-form label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: 1rem;
+  color: var(--white);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+#contact-form input:focus + label,
+#contact-form input:not(:placeholder-shown) + label,
+#contact-form textarea:focus + label,
+#contact-form textarea:not(:placeholder-shown) + label {
+  top: -0.75rem;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: var(--primary-color);
+}
+
+.contact-button {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.contact-button:hover {
+  background-color: var(--accent-color);
+}
+
+/* 13. Footer Styles */
+footer {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 3.125rem 0 1.25rem;
+}
+
+.footer-bottom {
+  border-top: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
+/* 14. Scroll to Top Button */
+#scroll-to-top {
+  display: none;
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.875rem;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+  padding: 0.9375rem;
+  border-radius: 50%;
+  font-size: 1.125rem;
+  transition: background-color var(--transition);
+}
+
+#scroll-to-top:hover {
+  background-color: var(--accent-color);
+}
+
+/* 15. Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes icon-animation {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-5px) scale(1.2);
+  }
+}
+
+@keyframes fly {
+  from {
+    transform: translateY(0.1em);
+  }
+  to {
+    transform: translateY(-0.2em);
+  }
+}
+
+/* 16. Form Validation Styles */
+.error-message {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  margin-top: 0.3125rem;
+}
+
+input.error,
+textarea.error {
+  border-color: var(--primary-color);
+}
+
+/* 17. Notification Styles */
+.notification {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  padding: 0.9375rem 1.25rem;
+  border-radius: 0.3125rem;
+  color: var(--white);
+  font-weight: bold;
+  opacity: 0.9;
+  transition: opacity var(--transition);
+  z-index: 1001;
+}
+
+.notification.success {
+  background-color: #4caf50;
+}
+
+.notification.error {
+  background-color: var(--primary-color);
+}
+
+/* 18. Typing Effect Styles */
+.typing-container {
+  position: relative;
+  display: inline-block;
+}
+
+.typing-text {
+  display: inline-block;
+  position: relative;
+}
+
+.cursor {
+  position: absolute;
+  top: 0;
+  right: -0.125rem;
+  width: 0.125rem;
+  height: 1em;
+  background-color: var(--white);
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 19. Media Queries */
+@media (max-width: 48rem) {
+  .hero .container {
+    flex-direction: column;
+  }
+
+  .hero-content {
+    padding-right: 0;
+    margin-bottom: 1.875rem;
+  }
+
+  .stats {
+    flex-direction: column;
+  }
+
+  .stat-item {
+    margin-bottom: 1.875rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  nav.show {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--secondary-color);
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem 0;
+  }
+
+  nav.show ul {
+    flex-direction: column;
+  }
+
+  nav.show ul li {
+    margin: 0.625rem 0;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-0.3125rem, 0.375rem);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-0.3125rem, -0.375rem);
+  }
+
+  .about-cards {
+    flex-direction: column;
+  }
+
+  .contact-wrapper {
+    flex-direction: column;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info,
+  #contact-form {
+    min-width: 100%;
+  }
+}
+
+/* Animated Send Button Styles */
+.animated-button {
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 0.7em 1em;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: background-color 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.animated-button .svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animated-button span {
+  display: block;
+  margin-left: 0.3em;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.animated-button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+  fill: var(--white);
+  transform: rotate(-45deg);
+}
+
+.animated-button:hover .svg-wrapper {
+  animation: fly 0.6s ease-in-out infinite alternate;
+}
+
+.animated-button:hover svg {
+  transform: translateX(3.5rem) rotate(0deg) scale(1.1);
+}
+
+.animated-button:hover span {
+  transform: translateX(5em);
+  opacity: 0;
+}
+
+.animated-button:active {
+  transform: scale(0.95);
+}
+
+/* Canvas style for 3d element */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
