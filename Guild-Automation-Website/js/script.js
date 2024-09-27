@@ -209,14 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Team Member Interaction
   (() => {
     const teamMembers = document.querySelectorAll(".team-member");
-
+    
     teamMembers.forEach((member) => {
-      member.addEventListener("click", () => {
-        const isActive = member.classList.contains("active");
+      member.addEventListener("mouseenter", () => {
         teamMembers.forEach((m) => m.classList.remove("active"));
-        if (!isActive) {
-          member.classList.add("active");
-        }
+        member.classList.add("active");
+      });
+  
+      member.addEventListener("mouseleave", () => {
+        member.classList.remove("active");
       });
     });
   })();
